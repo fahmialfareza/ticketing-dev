@@ -15,6 +15,7 @@ spec:
       containers:
         - name: auth
           image: fahmialfareza/auth
+          # image: us.gcr.io/ticketing-dev-316900/auth
 
 ---
 apiVersion: v1
