@@ -22,3 +22,9 @@ Bulding microservices Ticketing app with express.js, TypeScript, MongoDB, Redis,
 5. Install ingress nginx
 6. `gcloud auth application-default login`
 7. `skaffold dev`
+
+# Creating a secret environment
+
+```zsh
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+```
