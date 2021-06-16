@@ -19,3 +19,13 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: fahmialfareza/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.tsx'
+            dest: .
+          - src: '**/*.ts'
+            dest: .

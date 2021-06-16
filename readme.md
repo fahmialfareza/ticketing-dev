@@ -7,6 +7,7 @@ Bulding microservices Ticketing app with express.js, TypeScript, MongoDB, Redis,
 | Folder       | Detail                                        |
 | ------------ | --------------------------------------------- |
 | auth         | Service to handle signup/signin/signout       |
+| client       | The client app (Next.js)                      |
 | infra        | Kubernetes infrastucture for this application |
 | skaffold.yml | Skaffold configuration for this project       |
 
