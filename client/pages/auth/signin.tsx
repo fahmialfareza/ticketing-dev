@@ -8,7 +8,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [doRequest, errors] = useRequest({
-    url: '/api/users/signup',
+    url: '/api/users/signin',
     method: 'post',
     data: {
       email,
@@ -33,7 +33,7 @@ export default function SignUp() {
   return (
     <form onSubmit={onSubmit}>
       <ToastContainer />
-      <h1>Sign Up</h1>
+      <h1>Sign In</h1>
       <div className="form-group">
         <label>Email Address</label>
         <input
@@ -52,7 +52,7 @@ export default function SignUp() {
           className="form-control"
         />
       </div>
-      <button className="btn btn-primary">Sign Up</button>
+      <button className="btn btn-primary">Sign In</button>
     </form>
   );
 }
