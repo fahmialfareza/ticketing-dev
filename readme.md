@@ -29,3 +29,9 @@ Bulding microservices Ticketing app with express.js, TypeScript, MongoDB, Redis,
 ```zsh
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
 ```
+
+# Running skaffold
+
+```zsh
+skaffold dev --trigger polling
+```

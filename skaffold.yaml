@@ -29,3 +29,11 @@ build:
             dest: .
           - src: '**/*.ts'
             dest: .
+    - image: fahmialfareza/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
