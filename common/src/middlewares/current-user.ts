@@ -29,7 +29,7 @@ export const currentUser = (
       process.env.JWT_KEY!
     ) as UserPayload;
     req.currentUser = payload;
-  } catch (error) {}
+  } catch (err) {}
 
   next();
 };
