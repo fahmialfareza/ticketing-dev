@@ -11,6 +11,7 @@ Bulding microservices Ticketing app with express.js, TypeScript, MongoDB, Redis,
 | common       | The commmon service that used in every service and it's uploaded to npmjs.com |
 | infra        | Kubernetes infrastucture for this application                                 |
 | nats-test    | Testing to NATS Streaming Server                                              |
+| orders       | Order service                                                                 |
 | tickets      | Ticket service                                                                |
 | skaffold.yml | Skaffold configuration for this project                                       |
 
