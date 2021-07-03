@@ -32,6 +32,8 @@ Bulding microservices Ticketing app with express.js, TypeScript, MongoDB, Redis,
 
 ```zsh
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY={SECRET_KEY}
+kubectl get secrets
 ```
 
 # Running skaffold
