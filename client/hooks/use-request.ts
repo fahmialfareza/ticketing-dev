@@ -12,12 +12,17 @@ export default function UseRequest({
   url,
   method,
   data,
-}: AxiosRequestConfig): [doRequest: () => Promise<any>, errors: Array<Errors>] {
+}: AxiosRequestConfig): [
+  doRequest: (props?: any) => Promise<any>,
+  errors: Array<Errors>
+] {
   const [errors, setErrors] = useState<Array<Errors>>([]);
 
-  const doRequest = async () => {
+  const doRequest = async (props = {}) => {
     setErrors([]);
     try {
+      data = { ...data, ...props };
+
       const config: AxiosRequestConfig = {
         method,
         url,

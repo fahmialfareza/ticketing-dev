@@ -29,6 +29,10 @@ build:
             dest: .
           - src: '**/*.ts'
             dest: .
+          - src: '**/**/*.tsx'
+            dest: .
+          - src: '**/**/*.ts'
+            dest: .
     - image: fahmialfareza/tickets
       context: tickets
       docker:

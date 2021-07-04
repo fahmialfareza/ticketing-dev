@@ -11,6 +11,8 @@ export default function Header({ currentUser }: User) {
   const links = [
     !currentUser && { label: 'Sign Up', href: '/auth/signup' },
     !currentUser && { label: 'Sign In', href: '/auth/signin' },
+    currentUser && { label: 'Sell Tickets', href: '/tickets/new' },
+    currentUser && { label: 'My Orders', href: '/orders' },
     currentUser && { label: 'Sign Out', href: '/auth/signout' },
   ]
     .filter((linkConfig) => linkConfig)
@@ -25,9 +27,9 @@ export default function Header({ currentUser }: User) {
     });
 
   return (
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar navbar-dark bg-dark mb-4">
       <Link href="/">
-        <a className="navbar-brand">GitTix</a>
+        <a className="mx-2 navbar-brand">GitTix</a>
       </Link>
 
       <div className="d-flex justify-context-end">
