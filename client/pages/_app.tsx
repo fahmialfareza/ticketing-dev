@@ -1,8 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.css';
+import type { AppProps, AppContext } from 'next/app';
 import buildClient from '../api/build-client';
 import Header from '../components/header';
 
-const AppComponent = ({ Component, pageProps, currentUser }) => {
+interface Props extends AppProps {
+  currentUser: {
+    id: string;
+    email: string;
+  };
+}
+
+function MyApp({ Component, pageProps, currentUser }: Props) {
   return (
     <div>
       <Header currentUser={currentUser} />
@@ -11,16 +19,19 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
       </div>
     </div>
   );
-};
+}
 
-AppComponent.getInitialProps = async (appContext) => {
+MyApp.getInitialProps = async (appContext: AppContext) => {
   const client = buildClient(appContext.ctx);
   const { data } = await client.get('/api/users/currentuser');
 
   let pageProps = {};
+
   if (appContext.Component.getInitialProps) {
+    /* @ts-ignore */
     pageProps = await appContext.Component.getInitialProps(
       appContext.ctx,
+      /* @ts-ignore */
       client,
       data.currentUser
     );
@@ -32,4 +43,4 @@ AppComponent.getInitialProps = async (appContext) => {
   };
 };
 
-export default AppComponent;
+export default MyApp;
