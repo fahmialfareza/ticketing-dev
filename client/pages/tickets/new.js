@@ -1,30 +1,24 @@
-import { useState, FormEvent, useEffect } from 'react';
+import { useState } from 'react';
 import Router from 'next/router';
 import useRequest from '../../hooks/use-request';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
-export default function NewTicket() {
+const NewTicket = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
-  const [doRequest, errors] = useRequest({
+  const { doRequest, errors } = useRequest({
     url: '/api/tickets',
     method: 'post',
-    data: { title, price },
+    body: {
+      title,
+      price,
+    },
+    onSuccess: () => Router.push('/'),
   });
 
-  useEffect(() => {
-    if (errors.length > 0) {
-      errors.map((err) => toast.error(err.message));
-    }
-  }, [errors]);
-
-  const onSubmit = async (event: FormEvent) => {
+  const onSubmit = (event) => {
     event.preventDefault();
 
-    const newTicket = await doRequest();
-
-    Router.push('/');
+    doRequest();
   };
 
   const onBlur = () => {
@@ -39,7 +33,6 @@ export default function NewTicket() {
 
   return (
     <div>
-      <ToastContainer />
       <h1>Create a Ticket</h1>
       <form onSubmit={onSubmit}>
         <div className="form-group">
@@ -59,8 +52,11 @@ export default function NewTicket() {
             className="form-control"
           />
         </div>
+        {errors}
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
   );
-}
+};
+
+export default NewTicket;
