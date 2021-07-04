@@ -4,8 +4,8 @@ import {
   requireAuth,
   validateRequest,
   BadRequestError,
-  NotFoundError,
   NotAuthorizedError,
+  NotFoundError,
   OrderStatus,
 } from '@fatickets/common';
 import { stripe } from '../stripe';
@@ -46,7 +46,7 @@ router.post(
       stripeId: charge.id,
     });
     await payment.save();
-    await new PaymentCreatedPublisher(natsWrapper.client).publish({
+    new PaymentCreatedPublisher(natsWrapper.client).publish({
       id: payment.id,
       orderId: payment.orderId,
       stripeId: payment.stripeId,
@@ -56,4 +56,4 @@ router.post(
   }
 );
 
-export { router as createChargerRouter };
+export { router as createChargeRouter };

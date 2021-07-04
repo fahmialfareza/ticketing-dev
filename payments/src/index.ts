@@ -5,6 +5,8 @@ import { OrderCancelledListener } from './events/listeners/order-cancelled-liste
 import { OrderCreatedListener } from './events/listeners/order-created-listener';
 
 const start = async () => {
+  console.log('Starting...');
+
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
   }
@@ -34,22 +36,21 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());
 
-    new OrderCancelledListener(natsWrapper.client).listen();
     new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderCancelledListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
-      useFindAndModify: false,
     });
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.log(error);
+    console.log('Connected to MongoDb');
+  } catch (err) {
+    console.error(err);
   }
 
   app.listen(3000, () => {
-    console.log('Listening on port 3000!');
+    console.log('Listening on port 3000!!!!!!!!');
   });
 };
 
