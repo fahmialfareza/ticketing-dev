@@ -1,6 +1,13 @@
 import Link from 'next/link';
 
-export default ({ currentUser }) => {
+interface User {
+  currentUser: {
+    id: string;
+    email: string;
+  };
+}
+
+export default function Header({ currentUser }: User) {
   const links = [
     !currentUser && { label: 'Sign Up', href: '/auth/signup' },
     !currentUser && { label: 'Sign In', href: '/auth/signin' },
@@ -9,9 +16,9 @@ export default ({ currentUser }) => {
     currentUser && { label: 'Sign Out', href: '/auth/signout' },
   ]
     .filter((linkConfig) => linkConfig)
-    .map(({ label, href }) => {
+    .map(({ label, href }: any) => {
       return (
-        <li key={href} className="nav-item">
+        <li key={href}>
           <Link href={href}>
             <a className="nav-link">{label}</a>
           </Link>
@@ -20,14 +27,14 @@ export default ({ currentUser }) => {
     });
 
   return (
-    <nav className="navbar navbar-light bg-light">
+    <nav className="navbar navbar-dark bg-dark mb-4">
       <Link href="/">
-        <a className="navbar-brand">GitTix</a>
+        <a className="mx-2 navbar-brand">GitTix</a>
       </Link>
 
-      <div className="d-flex justify-content-end">
-        <ul className="nav d-flex align-items-center">{links}</ul>
+      <div className="d-flex justify-context-end">
+        <ul className="nav d-flex align-items-center text-white">{links}</ul>
       </div>
     </nav>
   );
-};
+}
