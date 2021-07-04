@@ -12,7 +12,7 @@ const setup = async () => {
     id: mongoose.Types.ObjectId().toHexString(),
     status: OrderStatus.Created,
     price: 10,
-    userId: 'asdasdsa',
+    userId: 'asldkfj',
     version: 0,
   });
   await order.save();
@@ -21,7 +21,7 @@ const setup = async () => {
     id: order.id,
     version: 1,
     ticket: {
-      id: 'adsadas',
+      id: 'asldkfj',
     },
   };
 
