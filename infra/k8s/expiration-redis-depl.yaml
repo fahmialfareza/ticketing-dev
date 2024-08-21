@@ -15,6 +15,27 @@ spec:
       containers:
         - name: expiration-redis
           image: redis:6-alpine
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+            requests:
+              memory: "128Mi"
+              cpu: "125m"
+          livenessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            initialDelaySeconds: 5
+            periodSeconds: 10
 
 ---
 apiVersion: v1
@@ -29,3 +50,4 @@ spec:
       protocol: TCP
       port: 6379
       targetPort: 6379
+  type: ClusterIP
