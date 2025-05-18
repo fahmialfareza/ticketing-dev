@@ -28,5 +28,9 @@
     "express-validator": "^6.12.0",
     "jsonwebtoken": "^8.5.1",
     "node-nats-streaming": "^0.3.2"
+  },
+  "volta": {
+    "node": "18.16.0",
+    "pnpm": "8.6.0"
   }
 }
